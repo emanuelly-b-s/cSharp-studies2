@@ -13,13 +13,13 @@ ConcurrentQueue<Defensor> defensores = new ConcurrentQueue<Defensor>();
 List<int> dadoA = new List<int>();
 List<int> dadoD = new List<int>();
 
-for (int i = 0; i < 5000; i++)
+for (int i = 0; i < 1000; i++)
 {
     Atacante Atacante = new Atacante();
     atacantes.Enqueue(Atacante);
 }
 
-for (int i = 0; i < 3000; i++)
+for (int i = 0; i < 857; i++)
 {
     Defensor Defensor = new Defensor();
     defensores.Enqueue(Defensor);
@@ -36,13 +36,13 @@ int vA = 0;
 for (int m = 0; m < K; m++)
 {
     var dt = DateTime.Now;
-    for (int i = 0; i < 5000; i++)
+    for (int i = 0; i < 1000; i++)
     {
         Atacante Atacante = new Atacante();
         atacantes.Enqueue(Atacante);
     }
     
-    for (int i = 0; i < 3000; i++)
+    for (int i = 0; i < 857; i++)
     {
         Defensor Defensor = new Defensor();
         defensores.Enqueue(Defensor);
