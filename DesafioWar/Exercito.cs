@@ -14,8 +14,6 @@ public class Exercito
         this.qtdAtacantes = qtdAtacantes;
         this.qtdDefensores = qtdDefensores;
     }
-    // ConcurrentQueue<Exercito> atacantes = new ConcurrentQueue<Exercito>();
-    // ConcurrentQueue<Exercito> defensores = new ConcurrentQueue<Exercito>();
 
 }
 

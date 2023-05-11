@@ -9,19 +9,20 @@ Random rand = new Random();
 
 
 ConcurrentQueue<Atacante> atacantes = new ConcurrentQueue<Atacante>();
-
 ConcurrentQueue<Defensor> defensores = new ConcurrentQueue<Defensor>();
 
 List<int> dadoA = new List<int>();
 List<int> dadoD = new List<int>();
 
-for (int i = 0; i < 1500; i++)
+//criando atacantes
+for (int i = 0; i < 5000; i++)
 {
     Atacante Atacante = new Atacante();
     atacantes.Enqueue(Atacante);
 }
 
-for (int i = 0; i < 1500; i++)
+//criando defensores
+for (int i = 0; i < 3200; i++)
 {
     Defensor Defensor = new Defensor();
     defensores.Enqueue(Defensor);
@@ -30,39 +31,72 @@ for (int i = 0; i < 1500; i++)
 int qtdD = defensores.Count();
 int qtdA = atacantes.Count();
 
-Exercito exercito = new Exercito(qtdA, qtdD);
+// Exercito exercito = new Exercito(qtdA, qtdD);
 
-// Console.WriteLine(exercito.qtdAtacantes);
-// Console.WriteLine(exercito.qtdDefensores);
-for (int i = 0; i < 3; i++)
+int K = 100;
+int vD = 0;
+int vA = 0;
+
+
+for (int m = 0; m < K; m++)
 {
-   dadoA.Add(rand.Next(1, 7));
-   dadoD.Add(rand.Next(1, 7));
+    var dt = DateTime.Now;
+    for (int i = 0; i < 5000; i++)
+    {
+        Atacante Atacante = new Atacante();
+        atacantes.Enqueue(Atacante);
+    }
+    //criando defensores
+    for (int i = 0; i < 3000; i++)
+    {
+        Defensor Defensor = new Defensor();
+        defensores.Enqueue(Defensor);
+    }
+
+    for (int i = 0; i < qtdD + qtdA; i += 3)
+    {
+        if (atacantes.Count() < 2 || defensores.Count() < 1)
+            break;
+
+        for (int j = 0; j < 3; j++)
+        {
+            dadoA.Add(rand.Next(1, 7));
+            dadoD.Add(rand.Next(1, 7));
+        }
+
+        dadoA.Sort();
+        dadoD.Sort();
+
+        for (int q = 0; q < 3; q++)
+        {
+            if (dadoA[q] > dadoD[q])
+            {
+                defensores.TryDequeue(out _);
+            }
+            else
+            {
+                atacantes.TryDequeue(out _);
+            }
+        }
+
+        dadoA.Clear();
+        dadoD.Clear();
+    }
+
+    if (atacantes.Count() > defensores.Count())
+    {
+        vA++;
+    }
+    else
+    {
+        vD++;
+    }
 }
 
-dadoA.Sort();
-dadoD.Sort();
+double probabilidadeAtacante = (vA * 100) / K;
+double probabilidadeDefensores = (vD * 100) / K;
 
-foreach (var item in dadoA)
-{
-    Console.WriteLine(item);
-}
-foreach (var item in dadoD)
-{
-    Console.WriteLine(item);
-}
-
-
-
-
-
-
-
-
-
-
-
-
+Console.WriteLine($"Defensores {probabilidadeDefensores} % / Atacantes {probabilidadeAtacante} % ");
 
 
 
