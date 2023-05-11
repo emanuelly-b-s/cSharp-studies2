@@ -28,7 +28,7 @@ for (int i = 0; i < 3000; i++)
 int qtdD = defensores.Count();
 int qtdA = atacantes.Count();
 
-int K = 10000;
+int K = 1000;
 int vD = 0;
 int vA = 0;
 
