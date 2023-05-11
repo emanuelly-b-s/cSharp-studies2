@@ -6,29 +6,30 @@ using System.Threading.Tasks;
 
 public class Exercito
 {
+    public int qtdAtacantes { get; set; }
+    public int qtdDefensores { get; set; }
+
+    public Exercito(int qtdAtacantes, int qtdDefensores)
+    {
+        this.qtdAtacantes = qtdAtacantes;
+        this.qtdDefensores = qtdDefensores;
+    }
+    // ConcurrentQueue<Exercito> atacantes = new ConcurrentQueue<Exercito>();
+    // ConcurrentQueue<Exercito> defensores = new ConcurrentQueue<Exercito>();
+
+}
+
+public class Defensor
+{
+    // ConcurrentQueue<Exercito> atacantes = new ConcurrentQueue<Exercito>();
     public int NumSoldados { get; set; }
-    public Exercito(int numeroSoldados) => NumSoldados = numeroSoldados;
-
 }
 
-public class Atacantes : Exercito
+public class Atacante
 {
-    ConcurrentQueue<Exercito> atacantes = new ConcurrentQueue<Exercito>();
-
-    public Atacantes(int numeroSoldados) : base(numeroSoldados)
-    {
-        NumSoldados = numeroSoldados;
-    }
-
+    // ConcurrentQueue<Exercito> atacantes = new ConcurrentQueue<Exercito>();
+    public int NumSoldados { get; set; }
 }
 
-public class Defensores : Exercito
-{
-    ConcurrentQueue<Exercito> atacantes = new ConcurrentQueue<Exercito>();
 
-    public Defensores(int numeroSoldados) : base(numeroSoldados)
-    {
-        NumSoldados = numeroSoldados;
-    }
-
-}
+// }
