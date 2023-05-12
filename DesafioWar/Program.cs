@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-
 Random rand = new Random();
 
 int qtdAtacantes = 1000;
@@ -15,7 +14,7 @@ int qtdDefensores = 585;
 List<int> dadoA = new List<int>();
 List<int> dadoD = new List<int>();
 
-int K = 5;
+int K = 10_000;
 int vD = 0;
 int vA = 0;
 
@@ -29,7 +28,7 @@ void LimpaJogadores(ConcurrentQueue<Atacante> atacantes, ConcurrentQueue<Defenso
         defensores.TryDequeue(out _);
     }
 
-    while (defensores.Count > 0)
+    while (atacantes.Count > 0)
     {
         atacantes.TryDequeue(out _);
     }
@@ -82,7 +81,6 @@ void Batalha(ConcurrentQueue<Atacante> atacantes, ConcurrentQueue<Defensor> defe
 }
 
 
-
 ConcurrentQueue<Atacante> CriandoAtaques(int qtdAtacantes)
 {
     for (int i = 0; i < qtdAtacantes; i++)
@@ -106,20 +104,17 @@ ConcurrentQueue<Defensor> CriandoDefensores(int qtdAtacantes)
 }
 
 
-
-Parallel.For(0, 100, i =>
-{
-    Batalha(atacantes, defensores);
+// Parallel.For(0, 100, i =>
+// {
+//     Batalha(atacantes, defensores);
     
-});
-
+// });
 
 
 for (int m = 0; m < K; m++)
 {
     Batalha(atacantes, defensores);
     Console.WriteLine("def " + defensores.Count() + " atacantes " + atacantes.Count());
-
 }
 
 
