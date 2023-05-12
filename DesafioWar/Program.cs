@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 Random rand = new Random();
 
 int qtdAtacantes = 1000;
-int qtdDefensores = 620;
+int qtdDefensores = 585;
 
 List<int> dadoA = new List<int>();
 List<int> dadoD = new List<int>();
@@ -42,10 +43,15 @@ void Batalha(ConcurrentQueue<Atacante> atacantes, ConcurrentQueue<Defensor> defe
 
     for (int i = 0; i < qtdAtacantes + qtdDefensores; i += 3)
     {
-        if (atacantes.Count() < 2 || defensores.Count() < 1)
+        if (atacantes.Count() == 1 || defensores.Count() < 1)
             break;
+        
+        int menorNumSoldados = 3;
 
-        for (int j = 0; j < 3; j++)
+        if (atacantes.Count() < 3 || defensores.Count() < 3)
+            menorNumSoldados = 2;
+    
+        for (int j = 0; j < menorNumSoldados; j++)
         {
             dadoA.Add(rand.Next(1, 7));
             dadoD.Add(rand.Next(1, 7));
@@ -54,19 +60,10 @@ void Batalha(ConcurrentQueue<Atacante> atacantes, ConcurrentQueue<Defensor> defe
         dadoA.Sort();
         dadoD.Sort();
 
-        for (int q = 0; q < 3; q++)
+        for (int q = 0; q < menorNumSoldados; q++)
         {
-            if (dadoA[q] > dadoD[q])
-            {
-                defensores.TryDequeue(out _);
-            }
-            else
-            {
-                atacantes.TryDequeue(out _);
-
-            }
+            if (dadoA[q] > dadoD[q] ? defensores.TryDequeue(out _) : atacantes.TryDequeue(out _));
         }
-
         dadoA.Clear();
         dadoD.Clear();
     }
@@ -110,20 +107,27 @@ ConcurrentQueue<Defensor> CriandoDefensores(int qtdAtacantes)
 
 
 
+Parallel.For(0, 100, i =>
+{
+    Batalha(atacantes, defensores);
+    
+});
+
+
+
 for (int m = 0; m < K; m++)
 {
-
     Batalha(atacantes, defensores);
     Console.WriteLine("def " + defensores.Count() + " atacantes " + atacantes.Count());
 
 }
 
 
-
-// double probabilidadeAtacante = (vA * 100) / K;
-// double probabilidadeDefensores = (vD * 100) / K;
+double probabilidadeAtacante = (vA * 100) / K;
+double probabilidadeDefensores = (vD * 100) / K;
 
 Console.WriteLine("Vit atacante: " + vA);
 Console.WriteLine("Vit defD: " + vD);
 
-// Console.WriteLine($"Defensores {probabilidadeDefensores} % / Atacantes {probabilidadeAtacante} % ");
+Console.WriteLine($"Concluído em  ms.");
+Console.WriteLine($"Defensores {probabilidadeDefensores} % / Atacantes {probabilidadeAtacante}% ");
