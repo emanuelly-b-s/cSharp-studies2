@@ -103,18 +103,16 @@ ConcurrentQueue<Defensor> CriandoDefensores(int qtdAtacantes)
     return defensores;
 }
 
-void Paralelo()
-{
-    Parallel.For(0, K, i =>
-    {
-        Batalha(atacantes, defensores);
-    });
-}
-
 Stopwatch stopwatch = new Stopwatch();
 stopwatch.Start();
-Paralelo();
+
+Parallel.For(0, K, i =>
+{
+    Batalha(atacantes, defensores);
+});
+
 stopwatch.Stop();
+
 
 //Metodo Monte Carlo
 // for (int m = 0; m < K; m++)
