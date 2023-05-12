@@ -113,20 +113,14 @@ Parallel.For(0, K, i =>
 
 stopwatch.Stop();
 
-
 //Metodo Monte Carlo
 // for (int m = 0; m < K; m++)
 // {
 //     Batalha(atacantes, defensores);
 
 // }
-
-
-double probabilidadeAtacante = (vA * 100) / K;
-double probabilidadeDefensores = (vD * 100) / K;
-
 Console.WriteLine("Vit atacante: " + vA);
 Console.WriteLine("Vit defD: " + vD);
 
 Console.WriteLine($"Concluído em  {stopwatch.ElapsedMilliseconds} ms.");
-Console.WriteLine($"Defensores {probabilidadeDefensores} % / Atacantes {probabilidadeAtacante}% ");
+Console.WriteLine($"Defensores {(vD * 100) / K} % / Atacantes {(vA * 100) / K}% ");
