@@ -7,8 +7,10 @@ using System.Threading;
 
 Random rand = new Random();
 
-int qtdAtacantes = 1000;
-int qtdDefensores = 585;
+const int qtdAtacantes = 1000;
+const int qtdDefensores = 583;
+
+const int qtdDados = 22 * (qtdAtacantes + qtdDefensores) / 10;
 
 int K = 10_000;
 int vD = 0;
@@ -62,7 +64,7 @@ void Batalha(ConcurrentQueue<Atacante> atacantes, ConcurrentQueue<Defensor> defe
         {
             var x = dadoA[q] > dadoD[q] ? defensores.TryDequeue(out _) : atacantes.TryDequeue(out _);
         }
-        
+
         dadoA.Clear();
         dadoD.Clear();
     }
@@ -100,6 +102,12 @@ stopwatch.Start();
 
 Parallel.For(0, K, i =>
 {
+    byte[] data = new byte[qtdDados];
+    lock(rand)
+    {
+        rand.NextBytes(data);
+    }
+    // Interlocked
     Batalha(atacantes, defensores);
 });
 
