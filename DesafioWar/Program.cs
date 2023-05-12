@@ -2,15 +2,13 @@
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
+
 
 Random rand = new Random();
 
 int qtdAtacantes = 1000;
 int qtdDefensores = 585;
-
 
 int K = 10_000;
 int vD = 0;
@@ -64,21 +62,15 @@ void Batalha(ConcurrentQueue<Atacante> atacantes, ConcurrentQueue<Defensor> defe
         {
             var x = dadoA[q] > dadoD[q] ? defensores.TryDequeue(out _) : atacantes.TryDequeue(out _);
         }
+        
         dadoA.Clear();
         dadoD.Clear();
     }
 
-    int sobrouA = atacantes.Count();
-    int sobrouD = defensores.Count();
-
-    if (sobrouA > sobrouD)
-    {
+    if (atacantes.Count() > defensores.Count())
         vA++;
-    }
     else
-    {
         vD++;
-    }
 }
 
 ConcurrentQueue<Atacante> CriandoAtaques(int qtdAtacantes)
