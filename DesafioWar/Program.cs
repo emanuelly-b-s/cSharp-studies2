@@ -2,42 +2,45 @@
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
-// using System.Threading;
-// using System.Threading.Tasks;
+using System.Threading;
+using System.Threading.Tasks;
+
 
 Random rand = new Random();
 
-ConcurrentQueue<Atacante> atacantes = new ConcurrentQueue<Atacante>();
-ConcurrentQueue<Defensor> defensores = new ConcurrentQueue<Defensor>();
+int qtdAtacantes = 1000;
+int qtdDefensores = 620;
 
 List<int> dadoA = new List<int>();
 List<int> dadoD = new List<int>();
 
-for (int i = 0; i < 1300; i++)
-{
-    Atacante Atacante = new Atacante();
-    atacantes.Enqueue(Atacante);
-}
-
-for (int i = 0; i < 800; i++)
-{
-    Defensor Defensor = new Defensor();
-    defensores.Enqueue(Defensor);
-}
-
-int qtdD = defensores.Count();
-int qtdA = atacantes.Count();
-
-int K = 1000;
+int K = 5;
 int vD = 0;
 int vA = 0;
 
+ConcurrentQueue<Atacante> atacantes = new ConcurrentQueue<Atacante>();
+ConcurrentQueue<Defensor> defensores = new ConcurrentQueue<Defensor>();
 
-for (int m = 0; m < K; m++)
+void LimpaJogadores(ConcurrentQueue<Atacante> atacantes, ConcurrentQueue<Defensor> defensores)
 {
-    // var dt = DateTime.Now;
+    while (defensores.Count > 0)
+    {
+        defensores.TryDequeue(out _);
+    }
 
-    for (int i = 0; i < qtdD + qtdA; i += 3)
+    while (defensores.Count > 0)
+    {
+        atacantes.TryDequeue(out _);
+    }
+}
+
+void Batalha(ConcurrentQueue<Atacante> atacantes, ConcurrentQueue<Defensor> defensores)
+{
+    LimpaJogadores(atacantes, defensores);
+    CriandoAtaques(qtdAtacantes);
+    CriandoDefensores(qtdDefensores);
+
+    for (int i = 0; i < qtdAtacantes + qtdDefensores; i += 3)
     {
         if (atacantes.Count() < 2 || defensores.Count() < 1)
             break;
@@ -68,28 +71,50 @@ for (int m = 0; m < K; m++)
         dadoD.Clear();
     }
 
-    if (atacantes.Count() > defensores.Count())
+    int sobrouA = atacantes.Count();
+    int sobrouD = defensores.Count();
+
+    if (sobrouA > sobrouD)
     {
-        
         vA++;
     }
     else
     {
         vD++;
     }
+}
 
-    Console.WriteLine("def " + defensores.Count() + " atacantes " + atacantes.Count());
-    for (int i = 0; i < 1300; i++)
+
+
+ConcurrentQueue<Atacante> CriandoAtaques(int qtdAtacantes)
+{
+    for (int i = 0; i < qtdAtacantes; i++)
     {
         Atacante Atacante = new Atacante();
         atacantes.Enqueue(Atacante);
     }
 
-    for (int i = 0; i < 800; i++)
+    return atacantes;
+}
+
+ConcurrentQueue<Defensor> CriandoDefensores(int qtdAtacantes)
+{
+    for (int i = 0; i < qtdDefensores; i++)
     {
         Defensor Defensor = new Defensor();
         defensores.Enqueue(Defensor);
     }
+
+    return defensores;
+}
+
+
+
+for (int m = 0; m < K; m++)
+{
+
+    Batalha(atacantes, defensores);
+    Console.WriteLine("def " + defensores.Count() + " atacantes " + atacantes.Count());
 
 }
 
