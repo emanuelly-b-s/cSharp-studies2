@@ -1,5 +1,5 @@
 public interface IProcessFactory
 {
-    public WagePaymentProcess CreateWagePaymentProcess();
-    public DismissalProcess CreateDismissalProcess();
+    WagePaymentProcess CreateWagePaymentProcess();
+    DismissalProcess CreateDismissalProcess();
 }

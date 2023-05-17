@@ -1,7 +1,7 @@
-public class Args
+public class ProcessArgs
 {
     private static ProcessArgs empty = new ProcessArgs();
-    plubic static ProcessArgs Empty => empty;
+    public static ProcessArgs Empty => empty;
 
 }
 

@@ -50,8 +50,9 @@ public class Company
 
     // Classes Aninhadas: Isso permite que CompanyBuilder veja todos os campos privados de Company
 
- public class CompanyBuilder
+    public class CompanyBuilder
     {
+        
         private Company company = new Company();
 
         public Company Build()

@@ -2,13 +2,13 @@
 var builder = Company.GetBuilder();
 
 builder
-.SetName("Mercado Libre")
-.InArgentina()
-.SetInitialCapital(20_000_000);
+    .SetName("Mercado Libre")
+    .InArgentina()
+    .SetInitialCapital(20_000_000);
 
 builder
-.AddEmploye("Marquitos Guapo", 50_000)
-.AddEmploye("Paulito Pino", 20_000);
+    .AddEmploye("Marquitos Guapo", 50_000)
+    .AddEmploye("Paulito Pino", 20_000);
 
 Company.New(builder);
 
@@ -16,13 +16,13 @@ Company.New(builder);
 builder = Company.GetBuilder();
 
 builder
-.SetName("Mercado Livre")
-.InBrazil()
-.SetInitialCapital(1_000_000);
+    .SetName("Mercado Livre")
+    .InBrazil()
+    .SetInitialCapital(1_000_000); 
 
 builder
- .AddEmploye("Marcos Bonito", 2_500)
- .AddEmploye("Paulo Pinheiro", 1_000);
+    .AddEmploye("Marcos Bonito", 2_500)
+    .AddEmploye("Paulo Pinheiro", 1_000);
 
 Company.New(builder);
 
