@@ -36,6 +36,13 @@ public class Company
         employes.Remove(employe);
     }
 
+    public void ListEmployes()
+    {
+        foreach (var employe in this.Employes)
+        {
+                Console.WriteLine($"Employe: {employe.Name} / Salary {employe.Wage} ");
+        }
+    }
     public void PayWages()
     {
         foreach (var employe in this.Employes)
