@@ -18,6 +18,16 @@ public class ArgentinaWagePaymentProcess : WagePaymentProcess
     }
 }
 
+public class ArgentinaContractProcess : ContractProcess
+{
+    public override string Title => "Empleado contratado";
+
+    public override void Apply(ContractArgs args)
+    {
+        args.Company.Money -= 1.2m * args.Employe.Wage;
+    }
+}
+
 public class ArgentinaProcessFactory : IProcessFactory
 {
     public DismissalProcess CreateDismissalProcess()
@@ -25,4 +35,7 @@ public class ArgentinaProcessFactory : IProcessFactory
 
     public WagePaymentProcess CreateWagePaymentProcess()
     => new ArgentinaWagePaymentProcess();
+
+    public ContractProcess CreateContractProcess() 
+    => new ArgentinaContractProcess();
 }

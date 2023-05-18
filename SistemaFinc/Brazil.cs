@@ -18,6 +18,16 @@ public class BrazilWagePaymentProcess : WagePaymentProcess
     }
 }
 
+public class BrazilContractProcess : ContractProcess 
+{
+     public override string Title => "Contratado :)";
+
+    public override void Apply(ContractArgs args)
+    {
+        args.Company.Money -= 0.7m * args.Employe.Wage;
+    }
+}
+
 public class BrazilProcessFactory : IProcessFactory
 {
     public DismissalProcess CreateDismissalProcess()
@@ -25,4 +35,7 @@ public class BrazilProcessFactory : IProcessFactory
 
     public WagePaymentProcess CreateWagePaymentProcess()
     => new BrazilWagePaymentProcess();
+
+    public ContractProcess CreateContractProcess()
+    => new BrazilContractProcess();
 }

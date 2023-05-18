@@ -18,6 +18,18 @@ public class UsaWagePaymentProcess : WagePaymentProcess
     }
 }
 
+public class UsaContractProcess : ContractProcess
+{
+    public override string Title => "Hired Employe";
+
+    public override void Apply(ContractArgs args)
+    {
+        args.Company.Money -= 0.2m * args.Employe.Wage;
+    }
+
+}
+
+
 public class UsaProcessFactory : IProcessFactory
 {
     public DismissalProcess CreateDismissalProcess()
@@ -25,4 +37,7 @@ public class UsaProcessFactory : IProcessFactory
 
     public WagePaymentProcess CreateWagePaymentProcess()
     => new UsaWagePaymentProcess();
+
+    public ContractProcess CreateContractProcess()
+    => new UsaContractProcess();
 }

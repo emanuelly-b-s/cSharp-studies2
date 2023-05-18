@@ -15,6 +15,7 @@ public class Company
 
     private DismissalProcess dismissalProcess = null;
     private WagePaymentProcess wagePaymentProcess = null;
+    private ContractProcess contractProcess = null;
 
     public void Contract(Employe employe)
     {
@@ -74,8 +75,8 @@ public class Company
         public CompanyBuilder SetFactory(IProcessFactory factory)
         {
             company.dismissalProcess = factory.CreateDismissalProcess();
-            company.wagePaymentProcess =
-            factory.CreateWagePaymentProcess();
+            company.wagePaymentProcess = factory.CreateWagePaymentProcess();
+            company.contractProcess = factory.CreateContractProcess();
 
             return this;
         }
