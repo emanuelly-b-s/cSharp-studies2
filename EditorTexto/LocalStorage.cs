@@ -4,8 +4,9 @@ using StreamReader;
 
 public class LocalStorage : IStorage
 {
-
-    void SaveFile (string nameFile, string content, string filePath)
+    string FilePath { get; set; }
+    public LocalStorage (string filePath) => this.FilePath;
+    void SaveFile (string nameFile, string content)
     {
         StreamWriter writer = new StreamWriter(filePath);
         writer.Write(content);
@@ -15,7 +16,7 @@ public class LocalStorage : IStorage
             Console.WriteLine("Error while saving the file");
     }
 
-    string LoadFile (string nameFile, string filePath)
+    string LoadFile (string nameFile)
     {
         StreamReader reader = new StreamReader(filePath);
         if(File.Exists(filePath))
@@ -27,7 +28,4 @@ public class LocalStorage : IStorage
         else 
             Console.WriteLine("The file cannot be located.");
     }
-    // public LocalStorage()
-    // {
-    // }
 }
