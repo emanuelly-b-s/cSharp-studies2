@@ -24,8 +24,9 @@ public class LocalStorage : IStorage
             string content = reader.ReadToEnd();
             Console.WriteLine("File contents");
             Console.WriteLine(content);
+            return "";
         }
-        else 
-            Console.WriteLine("The file cannot be located.");
+            return "The file cannot be located.";
+        
     }
 }
