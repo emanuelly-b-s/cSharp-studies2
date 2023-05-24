@@ -1,29 +1,15 @@
-public class TextEditor : ITextEditor
+public abstract class TextEditor : ITextEditor
 {
     private string Text;
     private string SavedText;
-    public void Delete()
-    {
-        throw new System.NotImplementedException();
-    }
+    public virtual void Delete(){}
+    public virtual void RedoAction(){}
+    public virtual void SaveChanges(){}
+    public virtual void UndoAction(){}
 
-    public void RedoAction()
+    public virtual string Write(string txt) 
     {
-        throw new System.NotImplementedException();
+        return txt;
     }
-
-    public void SaveChanges()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void UndoAction()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public string Write()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 }

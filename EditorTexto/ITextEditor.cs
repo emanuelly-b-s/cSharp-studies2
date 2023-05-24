@@ -1,6 +1,6 @@
 interface ITextEditor
 {
-    string Write();
+    string Write(string txt);
     void UndoAction();
     void RedoAction ();
     void SaveChanges();
