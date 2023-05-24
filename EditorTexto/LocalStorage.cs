@@ -1,32 +1,35 @@
 using System.IO;
-using StreamWriter;
-using StreamReader;
+
 
 public class LocalStorage : IStorage
 {
     string FilePath { get; set; }
-    public LocalStorage (string filePath) => this.FilePath;
-    void SaveFile (string nameFile, string content)
+    public LocalStorage(string filePath)
     {
-        StreamWriter writer = new StreamWriter(filePath);
+        filePath = this.FilePath;
+    }
+    public void SaveFile(string nameFile, string content)
+    {
+        StreamWriter writer = new StreamWriter(FilePath);
         writer.Write(content);
-        if(File.Exists(filePath))
+        if (File.Exists(FilePath))
             Console.WriteLine("File saved successfully");
         else
             Console.WriteLine("Error while saving the file");
     }
 
-    string LoadFile (string nameFile)
+    public string LoadFile(string nameFile)
     {
-        StreamReader reader = new StreamReader(filePath);
-        if(File.Exists(filePath))
+        StreamReader reader = new StreamReader(FilePath);
+        if (File.Exists(FilePath))
         {
             string content = reader.ReadToEnd();
             Console.WriteLine("File contents");
             Console.WriteLine(content);
             return "";
         }
-            return "The file cannot be located.";
-        
+        return "The file cannot be located.";
+
     }
+
 }
