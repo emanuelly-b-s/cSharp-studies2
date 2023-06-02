@@ -1,5 +1,5 @@
 public abstract class FolderCretor
 {
-    public abstract string NewFolder(string urlFolder, string nameFolder);
+    public abstract string NewFolder(string pathFolder, string nameFolder);
 }
 

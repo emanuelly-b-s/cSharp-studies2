@@ -1,13 +1,13 @@
 public class FolderCretorWin : FolderCretor
 {
 
-    public override string NewFolder(string urlFolder, string nameFolder)
+    public override string NewFolder(string pathFolder, string nameFolder)
     {
-        if (!Directory.Exists(urlFolder+nameFolder))
+        if (!Directory.Exists(pathFolder+nameFolder))
         {
-            Directory.CreateDirectory(urlFolder+nameFolder);
+            Directory.CreateDirectory(pathFolder+nameFolder);
         }
 
-        return urlFolder+nameFolder;
+        return pathFolder+nameFolder;
     }
 }
