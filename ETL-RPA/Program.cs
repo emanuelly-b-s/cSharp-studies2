@@ -13,7 +13,7 @@ string extensionGit = ".git";
 
 ps.AddCommand(newFolder.NewFolder(rootPath, "ateste"));
 
-test = folders.GetPath(rootPath);
+folders.GetPath(rootPath);
 
 
 

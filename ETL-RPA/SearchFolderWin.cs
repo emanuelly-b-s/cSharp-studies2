@@ -5,27 +5,15 @@ public class SearchFolderWin : SearchFolder
     public List<string> folders = new List<string>();
     public List<string> foldersExt = new List<string>();
 
-    public override List<string> GetPath(string rootFolderPath)
+    public override void GetPath(string rootFolderPath)
     {
-        folders = Directory.GetDirectories(rootFolderPath)
-                           .ToList();
 
-        foreach (var f in folders)
-        {
-          foldersExt = Directory.GetDirectories(f)
-                           .ToList();
-          
-        }
-    
-        return foldersExt;
+        var ls = Directory.EnumerateDirectories(@"C:\Users\disrct\Desktop\_C#-Avançado-GIT\.git").ToList();
+
+        foreach (var dir in ls)
+            Console.WriteLine(dir);
+
+        
     }
 
-    public override void SearchingFolder(string extensionFile,
-                                            List<string> foldersPath)
-    {
-        foreach (var folderPath in folders)
-        {
-            Console.WriteLine(folderPath);
-        }
-    }
 }
