@@ -6,8 +6,8 @@ using var ps = PowerShell.Create();
 FolderCretor newFolder = new FolderCretorWin();
 SearchFolder folders = new SearchFolderWin();
 ComandosGit pull = new GitPull();
-ComandosGit add = new GitPull();
-ComandosGit push = new GitPull();
+ComandosGit add = new GitAdd();
+ComandosGit push = new GitPush();
 
 
 List<string> teste = new List<string>();

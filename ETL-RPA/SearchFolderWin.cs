@@ -21,7 +21,14 @@ public class SearchFolderWin : SearchFolder
             Console.WriteLine(d);
 
             string dirNames = dir.Replace("\\.git", string.Empty);
-            string repoName = dirNames.Replace(dir, string.Empty);
+            Console.WriteLine(dirNames);
+            var repo = d.Split("\\");
+            string repoName = repo[repo.Length - 2];
+
+            foreach (var item in repo)
+            {
+                Console.WriteLine(item);
+            }
 
                 if (repoName.StartsWith('\\'))
                     repoName = repoName[1..];

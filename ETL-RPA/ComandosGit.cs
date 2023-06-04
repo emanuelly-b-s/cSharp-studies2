@@ -86,8 +86,7 @@ public class GitPush : ComandosGit
                   .AddArgument("push")
                   .AddArgument("-u")
                   .AddArgument("origin")
-                  .AddArgument("main")
-                  .Invoke();
+                  .AddArgument("main");
 
                 Console.WriteLine($"Add sucessfully");
             }
