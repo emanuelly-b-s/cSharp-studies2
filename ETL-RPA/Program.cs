@@ -6,6 +6,9 @@ using var ps = PowerShell.Create();
 FolderCretor newFolder = new FolderCretorWin();
 SearchFolder folders = new SearchFolderWin();
 ComandosGit pull = new GitPull();
+ComandosGit add = new GitPull();
+ComandosGit push = new GitPull();
+
 
 List<string> teste = new List<string>();
 List<string> test = new List<string>();
@@ -17,5 +20,6 @@ string extensionGit = ".git";
 
 folders.GetPath(rootPath, extensionGit);
 
-pull.Repositories((SearchFolderWin)folders);
+add.Repositories((SearchFolderWin)folders);
+push.Repositories((SearchFolderWin)folders);
 
