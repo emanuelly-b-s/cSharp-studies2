@@ -20,6 +20,9 @@ public class GitPull : ComandosGit
             {
                 ps.AddCommand("git")
                   .AddArgument("pull")
+                  .AddArgument("origin")
+                  .AddArgument("main")
+                  .AddArgument(repo)
                   .Invoke();
 
                 Console.WriteLine($"Pull sucessfully");
