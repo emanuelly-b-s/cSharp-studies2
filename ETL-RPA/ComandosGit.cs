@@ -69,3 +69,36 @@ public class GitAdd : ComandosGit
         }
     }
 }
+
+public class GitPush : ComandosGit
+{
+    public override void Repositories(SearchFolderWin repositories)
+    {
+        var repNames = repositories.ListGetRepName;
+        using var ps = PowerShell.Create();
+
+        foreach (var repo in repNames)
+        {
+            Console.WriteLine(repo);
+            try
+            {
+                ps.AddCommand("git")
+                  .AddArgument("push")
+                  .AddArgument("-u")
+                  .AddArgument("origin")
+                  .AddArgument("main")
+                  .Invoke();
+
+                Console.WriteLine($"Add sucessfully");
+            }
+            catch
+            {
+                Console.WriteLine($"Failed to add");
+            }
+            finally
+            {
+                ps.Commands.Clear();
+            }
+        }
+    }
+}
