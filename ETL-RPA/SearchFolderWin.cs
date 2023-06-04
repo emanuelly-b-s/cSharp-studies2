@@ -1,19 +1,27 @@
 using System.IO;
+using System.Management.Automation;
 
 public class SearchFolderWin : SearchFolder
 {
-    public List<string> folders = new List<string>();
-    public List<string> foldersExt = new List<string>();
+    private List<string> repName = new List<string>();
 
-    public override void GetPath(string rootFolderPath)
+
+    public List<string> ListGetRepName { get => repName; }
+
+
+    public override List<string> GetPath(string dir, string ext)
     {
 
-        var ls = Directory.EnumerateDirectories(@"C:\Users\disrct\Desktop\_C#-Avançado-GIT\.git").ToList();
+        var ls = Directory.EnumerateDirectories(dir, "*", SearchOption.AllDirectories).Where(d => d.Contains(".git"));
 
-        foreach (var dir in ls)
-            Console.WriteLine(dir);
+        foreach (var d in ls)
+        {
+            Console.WriteLine(d);
 
-        
+            string dirName = dir.Replace("\\.git", string.Empty);
+            repName.Add(dirName);
+
+        }
+        return ListGetRepName;
     }
-
 }
