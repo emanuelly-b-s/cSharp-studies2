@@ -13,13 +13,24 @@ ComandosGit push = new GitPush();
 List<string> teste = new List<string>();
 List<string> test = new List<string>();
 
-string rootPath = @"C:\Users\emanu\OneDrive\Área de Trabalho\cSharp-studies2\ETL-RPA";
+string rootPath = @"C:\Users\disrct\Desktop\_C#-Avançado-GIT";
 string extensionGit = ".git";
 
-// ps.AddCommand(newFolder.NewFolder(rootPath, "ateste"));
+// // ps.AddCommand(newFolder.NewFolder(rootPath, "ateste"));
 
 folders.GetPath(rootPath, extensionGit);
 
 add.Repositories((SearchFolderWin)folders);
 push.Repositories((SearchFolderWin)folders);
 
+// var ls = Directory.EnumerateDirectories(rootPath);
+
+// 
+
+
+// foreach (var dir in teste)
+// {
+//     var ls2 = Directory.EnumerateDirectories(dir);
+//     Console.WriteLine(dir);
+//     teste.Add(dir);
+// }

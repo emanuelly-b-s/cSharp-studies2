@@ -12,33 +12,59 @@ public class SearchFolderWin : SearchFolder
     public override List<string> GetPath(string dir, string ext)
     {
 
-        var ls = Directory.EnumerateDirectories(dir, "*", SearchOption.AllDirectories)
-                          .Where(d => d.EndsWith(".git"));
+        // foreach (var dir in ls)
+        // {
+        //     // Console.WriteLine(dir);
+        //     var ls2 = Directory.EnumerateDirectories(dir);
+        //     foreach (var item in ls2)
+        //     {
+        //         Console.WriteLine(item);
+
+        //         if(item.EndsWith(".git"))
+        //             teste.Add(dir);
+        //             Console.WriteLine(Path.GetFileName(dir));
+        //     }
+
+        // }
+
+        var ls = Directory.EnumerateDirectories(dir);
 
         foreach (var d in ls)
         {
             
             Console.WriteLine(d);
-
-            string dirNames = dir.Replace("\\.git", string.Empty);
-            Console.WriteLine(dirNames);
-            var repo = d.Split("\\");
-            string repoName = repo[repo.Length - 2];
-
-            foreach (var item in repo)
+            var ls2 = Directory.EnumerateDirectories(d);
+            foreach (var item in ls2)
             {
-                Console.WriteLine(item);
+                if (item.EndsWith(".git"))
+                {
+                    string dirNames = item.Replace("\\.git", string.Empty);
+                    repName.Add(Path.GetFileName(dirNames));
+
+                }
             }
-
-                if (repoName.StartsWith('\\'))
-                    repoName = repoName[1..];
-
-                repName.Add(repoName);
-            
-            Console.WriteLine(repoName);
-                
-
         }
-        return ListGetRepName;
+
+        foreach (var item in repName)
+        {
+            Console.WriteLine(item);
+        }
+
+        // var ls = Directory.EnumerateDirectories(dir, "*", SearchOption.AllDirectories)
+        //                   .Where(d => d.EndsWith(".git"));
+
+        // foreach (var d in ls)
+        // {
+
+        //     string dirNames = dir.Replace("\\.git", string.Empty);
+        //     string repoName = Path.GetFileName(dirNames);
+
+        //     foreach (var item in repoName)
+        //     {
+        //         Console.WriteLine(item);
+        //     }
+        return repName;
     }
+
+    // }
 }
