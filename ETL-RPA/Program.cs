@@ -5,7 +5,7 @@ using var ps = PowerShell.Create();
 
 FolderCretor newFolder = new FolderCretorWin();
 SearchFolder folders = new SearchFolderWin();
-ComandosGit pull = new GitPull();
+ComandosGit pull = new GitPull();    
 ComandosGit add = new GitAdd();
 ComandosGit push = new GitPush();
 
@@ -18,10 +18,17 @@ string extensionGit = ".git";
 
 // // ps.AddCommand(newFolder.NewFolder(rootPath, "ateste"));
 
-folders.GetPath(rootPath, extensionGit);
+var t = folders.GetPath(rootPath, extensionGit);
 
-add.Repositories((SearchFolderWin)folders);
-push.Repositories((SearchFolderWin)folders);
+foreach (var item in t)
+{
+    Console.WriteLine(item);
+    
+}
+
+add.Repositories(t);
+pull.Repositories(t);
+push.Repositories(t);
 
 // var ls = Directory.EnumerateDirectories(rootPath);
 

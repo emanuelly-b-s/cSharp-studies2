@@ -31,8 +31,8 @@ public class SearchFolderWin : SearchFolder
 
         foreach (var d in ls)
         {
-            
-            Console.WriteLine(d);
+
+            // Console.WriteLine(d);
             var ls2 = Directory.EnumerateDirectories(d);
             foreach (var item in ls2)
             {
@@ -45,10 +45,10 @@ public class SearchFolderWin : SearchFolder
             }
         }
 
-        foreach (var item in repName)
-        {
-            Console.WriteLine(item);
-        }
+        // foreach (var item in repName)
+        // {
+        //     Console.WriteLine(item);
+        // }
 
         // var ls = Directory.EnumerateDirectories(dir, "*", SearchOption.AllDirectories)
         //                   .Where(d => d.EndsWith(".git"));
